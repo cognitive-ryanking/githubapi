@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+#Note: This test will lock out the IP address from making requests to the GitHub API for an hour
 describe 'Rate Limit allows 60 requests per hour' do
 
   let(:url) { 'https://api.github.com/repos/cognitive-ryanking/githubapi' }
