@@ -39,12 +39,10 @@ describe 'Invalid Requests to Return errors' do
 
   it 'Cannot take a bad header' do
     bad_headers = {:accept => 'fake/fake'}
-    begin
-      RestClient.get(url,bad_headers)
-    rescue => e
+    expect { RestClient.get(url,bad_headers) }.to raise_error { |e|
       expect(e.response.code).to eq 415
       json = JSON.parse(e.response)
-      expect(json["message"]).to match(/Unsupported 'Accept' header/)
-    end
+      expect(json["message"]).to match /Unsupported 'Accept' header/
+    }
   end
 end
